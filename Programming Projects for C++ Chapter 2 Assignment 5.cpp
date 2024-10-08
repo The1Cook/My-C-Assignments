@@ -12,10 +12,13 @@ int main()
 	while (k == 0) {
 
 		//create a while loop that will continue to allow the user to keep repeating the looping information
-		cout << "How many people are in the room? " << endl;
+		cout << "How many people are in the room and what is the capacity? " << endl;
 			int people;
+			// make user input capacity
+			int capacity;
 			cin >> people;
-			if (people <= 30) {
+			cin >> capacity;
+			if (people <= capacity) {
 				cout << "You may hold the meeting" << endl;
 			}
 			else {
