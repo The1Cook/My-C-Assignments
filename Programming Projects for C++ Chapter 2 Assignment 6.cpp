@@ -29,16 +29,17 @@ int main()
         if (hours > 40)
             float grossPay = (16.78 * hours) + ((hours - 40) * (16.78 * 1.5));
         cout << "Gross Pay: " << grossPay << endl;
-        float AfterSocial = grossPay - (grossPay * 0.06);
+        float AfterSocial = (grossPay * 0.06);
         cout << "After Social Security tax: " << AfterSocial << endl;
-        float AfterFed = grossPay - (grossPay * 0.14);
+        float AfterFed = (grossPay * 0.14);
         cout << "After Federal Income Tax: " << AfterFed << endl;
-        float AfterState = grossPay - (grossPay * 0.05);
+        float AfterState = (grossPay * 0.05);
         cout << "After State Income Tax: " << AfterState << endl;
-        float AfterEverything = AfterSocial - (grossPay * 0.14) - (grossPay * 0.05 - 10);
+        
+        float AfterEverything = grossPay - AfterSocial - AfterFed - AfterState - 10;
         if (dependents >= 3)
             AfterEverything -= 35;
-        cout << "After all that bs (boring stuff) you get to take home $" << AfterEverything << endl;
+        cout << "After all that boring stuff you get to take home $" << AfterEverything << endl;
 
         cout << "Again? 0 for yes, 1 for no. " << endl;
         cin >> k;
