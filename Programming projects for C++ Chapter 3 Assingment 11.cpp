@@ -16,23 +16,20 @@ int main()
         digits[0] = digi1 - '0';
         digits[1] = digi2 - '0';
         digits[2] = digi3 - '0';
-    
-        for (int i = 0; i < 3; i++) {
-            if (digits[i] == 1 || digits[i] == 4 || digits[i] == 7)
-                digits[i] += 1;
+        int number = digits[0] * 100 + digits[1] * 10 + digits[2];
+        int up = number;
+        int down = number;
+        while (up % 10 == 1 || up % 10 == 4 || up % 10 == 7 || (up / 10) % 10 == 1 || (up / 10) % 10 == 4 || (up / 10) % 10 == 7 || (up / 100) % 10 == 1 || (up / 100) % 10 == 4 || (up / 100) % 10 == 7) {
+            up++;
             
-        
-        
         }
-        cout << "The next best number going up is " << digits[0] << digits[1] << digits[2] << endl;
-        for (int k = 0; k < 3; k++) {
-            if (digits[k] -1 == 1 || digits[k] -1 == 4 || digits[k] -1 == 7)
-                digits[k] -= 2;
-
-
+        while (down % 10 == 1 || down % 10 == 4 || down % 10 == 7 || (down / 10) % 10 == 1 || (down / 10) % 10 == 4 || (down / 10) % 10 == 7 || (down / 100) % 10 == 1 || (down / 100) % 10 == 4 || (down / 100) % 10 == 7) {
+            down--;
 
         }
-        cout << "The next best number going down is " << digits[0] << digits[1] << digits[2] << endl;
+        cout << "The next best number up is " << up << endl;
+        cout << "The next best number down is " << down << endl;
+        
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
