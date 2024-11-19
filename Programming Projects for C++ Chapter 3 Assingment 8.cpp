@@ -6,24 +6,24 @@
 
 using namespace std;
 int main() {
-    double pi = 0;
-    
-    int i;
-    double n;
-    cout << "Enter for n: ";
-    cin >> n;
-    cout << endl;
+    int x = 1;
+    while (x == 1) {
+        double pi = 0;
 
-    for (i = 0; i < n; i++)
-    {
-        if (i % 2 == 0) { // if the i is even
-        pi = pi + (1 / (2 * i + 1));
-    } else { // if i is odd
-         pi = pi - (1 / (2 * i + 1));
-         }
-         pi = 4 * pi;
-}
-cout << endl << "pi = " << pi << endl;
+        int i;
+        double n;
+        cout << "Enter for n: ";
+        cin >> n;
+        cout << endl;
+
+        for (i = 0; i <= n; i++)
+        {
+            pi += 4 * ((pow(-1, i)) / (2 * i + 1));
+        }
+        cout << endl << "pi = " << pi << endl;
+        cout << "Want to end the program? 1 for no, anything else for yes" << endl;
+        cin >> x;
+    }
     }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
@@ -36,3 +36,4 @@ cout << endl << "pi = " << pi << endl;
 //   4. Use the Error List window to view errors
 //   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
 //   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+
