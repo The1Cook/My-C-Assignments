@@ -2,13 +2,13 @@
 /*
 Write a program that scores a blackjack hand. In blackjack, a player receives
 from two to five cards. The cards 2 through 10 are scored as 2 through
-10 points each. The face cardsójack, queen, and kingóare scored as 10
+10 points each. The face cards‚Äîjack, queen, and king‚Äîare scored as 10
 points. The goal is to come as close to a score of 21 as possible without
-going over 21. Hence, any score over 21 is called ìbusted.î The ace can
+going over 21. Hence, any score over 21 is called ‚Äúbusted.‚Äù The ace can
 count as either 1 or 11, whichever is better for the user. For example, an
 ace and a 10 can be scored as either 11 or 21. Since 21 is a better score, this
 hand is scored as 21. An ace and two 8s can be scored as either 17 or 27.
-Since 27 is a ìbustedî score, this hand is scored as 17.
+Since 27 is a ‚Äúbusted‚Äù score, this hand is scored as 17.
 
 
  The user is asked how many cards she or he has, and the user responds with
@@ -35,54 +35,50 @@ using namespace std;
 
 int main()
 {
-    std::cout << "How many cards do you have? (from 2-5)" << endl;
-    int cards = 0;
-    while (cards > 5 || cards < 2)
-    {
+    int x = 1;
+    while (x == 1) {
+        std::cout << "How many cards do you have? (from 2-5)" << endl;
+        int cards = 0;
         cin >> cards;
-    }
+        if (cards != cards > 5 || cards < 2)
 
-    char nameCard[] = {0};
-    char cardName;
-    std::cout << "Enter what cards you have (j for jake, q for queen, etc.)" << endl;
-    for (int i = 0; i < cards; i++) {
-        cin >> nameCard[i];
-        
-    }
-    int overall = 0;
-    int ifAce = 0;
-    for (int k = 0; k < cards; k++) {
-        if (tolower(nameCard[k]) == 'j' || tolower(nameCard[k]) == 'k' || tolower(nameCard[k]) == 'q' || tolower(nameCard[k]) == 't') {
-            overall += 10;
-        }
-        else if (tolower(nameCard[k]) == 'a') {
-            cout << "One or eleven for your ace? " << endl;
-            cin >> ifAce;
-            overall += ifAce;
-        }
-        else {
-            overall += (nameCard[k] - '0');
-        
-        }
-    }
-    if (overall <= 21) {
-        cout << "Your score was " << overall << endl;
-    }
-    else {
-        cout << "busted!" << endl;
-    }
-    
-    
+            while (cards > 5 || cards < 2)
+            {
+                char nameCard[] = { 0 };
+                char cardName;
+                std::cout << "Enter what cards you have (j for jake, q for queen, etc.)" << endl;
+                for (int i = 0; i <= cards; i++) {
+                    cin >> nameCard[i];
 
+                }
+                int overall = 0;
+                int ifAce = 0;
+                for (int k = 0; k <= cards; k++) {
+                    if (tolower(nameCard[k]) == 'j' || tolower(nameCard[k]) == 'k' || tolower(nameCard[k]) == 'q' || tolower(nameCard[k]) == 't') {
+                        overall += 10;
+                    }
+                    else if (tolower(nameCard[k]) == 'a') {
+                        cout << "One or eleven for your ace? " << endl;
+                        cin >> ifAce;
+                        overall += ifAce;
+                    }
+                    else {
+                        overall += (nameCard[k] - '0');
+
+                    }
+                }
+                if (overall <= 21) {
+                    cout << "Your score was " << overall << endl;
+                }
+                else {
+                    cout << "busted!" << endl;
+                }
+
+
+            }
+        cout << "Are you done or are you thirsty for more? enter 1 if you arent, anything else if you are. " << endl;
+    }
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+// Debug program: F5 or Debug > Start Debugg
