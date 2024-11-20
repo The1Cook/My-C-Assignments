@@ -31,29 +31,28 @@ lets the user repeat this calculation until the user says she or he is done
 #include <array>
 #include <string.h>
 
-using namespace std;
+
 
 int main()
 {
+    using namespace std;
     int x = 1;
     while (x == 1) {
         std::cout << "How many cards do you have? (from 2-5)" << endl;
         int cards = 0;
-        cin >> cards;
-        if (cards != cards > 5 || cards < 2)
-
-            while (cards > 5 || cards < 2)
+        std::cin >> cards;
+        if (cards <= 5 && cards >= 2)
             {
                 char nameCard[] = { 0 };
                 char cardName;
                 std::cout << "Enter what cards you have (j for jake, q for queen, etc.)" << endl;
-                for (int i = 0; i <= cards; i++) {
+                for (int i = 0; i < cards; i++) {
                     cin >> nameCard[i];
 
                 }
                 int overall = 0;
                 int ifAce = 0;
-                for (int k = 0; k <= cards; k++) {
+                for (int k = 0; k < cards; k++) {
                     if (tolower(nameCard[k]) == 'j' || tolower(nameCard[k]) == 'k' || tolower(nameCard[k]) == 'q' || tolower(nameCard[k]) == 't') {
                         overall += 10;
                     }
@@ -75,10 +74,23 @@ int main()
                 }
 
 
-            }
+        }
+        else {
+            cout << "Pall, that's not 2 - 5 cards, try again. " << endl;
+        }
+        
         cout << "Are you done or are you thirsty for more? enter 1 if you arent, anything else if you are. " << endl;
+        cin >> x;
     }
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugg
+// Debug program: F5 or Debug > Start Debugging menu
+
+// Tips for Getting Started: 
+//   1. Use the Solution Explorer window to add/manage files
+//   2. Use the Team Explorer window to connect to source control
+//   3. Use the Output window to see build output and other messages
+//   4. Use the Error List window to view errors
+//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
+//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
