@@ -51,24 +51,31 @@ int main()
 
                 }
                 int overall = 0;
-                int ifAce = 0;
+                int aces = 0;
                 for (int k = 0; k < cards; k++) {
                     if (tolower(nameCard[k]) == 'j' || tolower(nameCard[k]) == 'k' || tolower(nameCard[k]) == 'q' || tolower(nameCard[k]) == 't') {
                         overall += 10;
                     }
                     else if (tolower(nameCard[k]) == 'a') {
-                        if ((overall + 11) <= 21) {
-                        overall += 11;
-                        }
-                        else {
-                        overall += 1;
-                        }
+                        aces++;
+                        overall++;
                     }
                     else {
                         overall += (nameCard[k] - '0');
-
                     }
+
                 }
+                if ((overall + 10) <= 21 && aces == 1)
+                    overall + 10;
+                    if ((overall + 10) <= 21 && aces == 2)
+                        overall + 10;
+                    if ((overall + 10) <= 21 && aces == 3)
+                        overall + 10;
+                    if ((overall + 10) <= 21 && aces == 4)
+                        overall + 10;
+                    if ((overall + 10) <= 21 && aces == 5)
+                        overall + 10;
+                    
                 if (overall <= 21) {
                     cout << "Your score was " << overall << endl;
                 }
@@ -86,14 +93,3 @@ int main()
         cin >> x;
     }
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
