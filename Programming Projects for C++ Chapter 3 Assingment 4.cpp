@@ -57,9 +57,12 @@ int main()
                         overall += 10;
                     }
                     else if (tolower(nameCard[k]) == 'a') {
-                        cout << "One or eleven for your ace? " << endl;
-                        cin >> ifAce;
-                        overall += ifAce;
+                        if ((overall + 11) <= 21) {
+                        overall += 11;
+                        }
+                        else {
+                        overall += 1;
+                        }
                     }
                     else {
                         overall += (nameCard[k] - '0');
