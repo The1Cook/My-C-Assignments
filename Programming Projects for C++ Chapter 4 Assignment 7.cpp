@@ -39,31 +39,31 @@ true if a_char contains the letter A.
 #include <cstdlib>
 int computeDifference(int sh, int sm, bool sam, int eh, int em, int eam)
 {
-	int startMint, endMint, finalMint;
-	if (sam) {
-		startMint = sh * 60 + sm;
-		
-	}
-	else {
-		startMint = sh * 60 + sm + 720;
-		
-	}
+	int startMint, endMint;
+	int finalMint = 0;
+	if (eh == 12)
+		eh = 0;
+	if (sh == 12)
+		sh = 0;
 
-	if (eam) {
-		endMint = eh * 60 + em;
-
+	if (sam && eam) {
+		finalMint = (eh * 60 + em) - (sh * 60 + sm);
 	}
-	else {
-		endMint = eh * 60 + em + 720;
+	else if (!sam && !eam) {
+		finalMint = (eh * 60 + em) - (sh * 60 + sm);
+	}
+	else if (sam && !eam) {
+		finalMint = ((eh + 12) * 60 + em) - (sh * 60 + sm);
+	}
+	else if (!sam && eam) {
+		finalMint = ((eh + 12) * 60 + em) - (sh * 60 + sm);
 	}
 	
-	finalMint = 720 - (endMint - startMint);
-	if (finalMint >= 720) {
-		finalMint = endMint - startMint - 720;
-	}
-	
-	return(abs(finalMint - 720));
 
+	
+	
+
+	return(abs(finalMint));
 
 }
 
@@ -79,14 +79,21 @@ int main()
 	int endHours;
 	int endMinutes;
 	bool endAM;
-
-	cout << "Enter your start hours, start minutes, and weather you are in AM with a true (1) or false (0), then do the same thing for your ending hours, minutes, and AM." << endl;
-	cin >> startHours;
-	cin >> startMinutes;
-	cin >> startAM;
-	cin >> endHours;
-	cin >> endMinutes;
-	cin >> endAM;
-	cout << "The difference in minutes is " << computeDifference(startHours, startMinutes, startAM, endHours, endMinutes, endAM) << endl;
+	char y;
+	while (true) {
+		cout << "Enter your start hours, start minutes, and whether you are in AM with a true (1) or false (0), then do the same thing for your ending hours, minutes, and AM." << endl;
+		cin >> startHours;
+		cin >> startMinutes;
+		cin >> startAM;
+		cin >> endHours;
+		cin >> endMinutes;
+		cin >> endAM;
+		cout << "The difference in minutes is " << computeDifference(startHours, startMinutes, startAM, endHours, endMinutes, endAM) << endl;
+		cout << "end program? (y/n)" << endl;
+		cin >> y;
+		if (y == 'y') {
+			break;
+		}
+	} 
 	return 0;
 }

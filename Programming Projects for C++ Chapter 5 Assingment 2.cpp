@@ -24,16 +24,24 @@ void get_times(int& hour, int& min, int&wait) {
     cin >> wait;
 }
 void hAM_wait(int&h, int&m, int&wait) {
+    h += wait / 60;
+    m += wait % 60;
+    if (m > 60) {
+        m -= 60;
+    }
+    if (h >= 24) {
+        h -= 24;
+    }
     
-    m += (h*60 + wait);
 }
-void output(int& m) {
+void output(int& m, int& h) {
     using namespace std;
+    
     if (m%60 <= 9) {
-        cout << "The wait will be until " << m/60 << ":0" << m%60 << endl;
+        cout << "The wait will be until " << h << ":0" << m << endl;
     }
     else {
-        cout << "The wait will be until " << m/60 << ":" << m%60 << endl;
+        cout << "The wait will be until " << h << ":" << m << endl;
     }
 }
 int main()
@@ -46,7 +54,7 @@ int main()
         cout << "Give start time" << endl;
         get_times(hour, min, wait);
         hAM_wait(hour, min, wait);
-        output(min);
+        output(min, hour);
         cout << "press 1 to do it again, 0 for exit." << endl;
         cin >> x;
     }
