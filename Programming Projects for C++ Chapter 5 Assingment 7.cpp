@@ -2,8 +2,7 @@
 #include <string>
 #include <map>
 #include <sstream>
-
-// Function prototypes
+//Define functions for procedure
 bool isLeapYear(int year);
 int getCenturyValue(int year);
 int getYearValue(int year);
@@ -32,7 +31,7 @@ int main() {
     // Get the corresponding day of the week
     std::string dayName = getDayOfWeek(dayOfWeek);
 
-    // Output the result
+    // Output
     std::cout << "The day of the week is: " << dayName << std::endl;
 
     return 0;
@@ -105,7 +104,7 @@ void getInput(int& day, int& month, int& year) {
         // Use stringstream to parse the input
         std::stringstream ss(input);
 
-        // Parse day, month, and year
+        
         char slash1, slash2;
         if (ss >> day >> slash1 >> month >> slash2 >> year) {
             // Ensure input is in the correct format (day/month/year)
@@ -128,7 +127,6 @@ void getInput(int& day, int& month, int& year) {
     }
 }
 
-// Function to return the day of the week as a string
 std::string getDayOfWeek(int dayOfWeek) {
     std::map<int, std::string> daysOfWeek = {
         {0, "Sunday"}, {1, "Monday"}, {2, "Tuesday"}, {3, "Wednesday"},
