@@ -1,46 +1,59 @@
+#include <iostream>
 #include <string>
 #include <cctype>
-#include <iostream>
 using namespace std;
 
-string change(string myString) {
-    string originalCopy(myString);
-    string newString;
+string maskNumbers(const string& line) {
+    string result;
+    size_t i = 0;
 
-    while (myString.size() > 0) {
-        while (!isdigit(myString[0]) && myString.size() > 0) {
-            if (myString[0] == 'x') newString += '*';
-            else newString += myString[0];
-            myString.erase(0, 1);
-        };
+    while (i < line.size()) {
+        if (isdigit(line[i])) {
+            // Check if this digit is part of a word
+            bool partOfWord = false;
 
-        while (isdigit(myString[0]) && myString.size() > 0) {
-            if (iswspace(newString[newString.size() - 1]) || newString[newString.size() - 1] == 'X')
-                newString += 'X';
-            else newString += myString[0];
-            myString.erase(0, 1);
-        };
-    };
+            if (i > 0 && isalpha(line[i - 1])) partOfWord = true;
+            if (i + 1 < line.size() && isalpha(line[i + 1])) partOfWord = true;
 
-    while (newString.find('*') < newString.size() &&
-        originalCopy[newString.find('*')] == 'X')
-        newString[newString.find('*')] = 'X';
+            if (partOfWord) {
+                // Preserve digit inside word
+                result += line[i];
+                i++;
+            }
+            else {
+                // Replace entire numeric sequence with x's
+                while (i < line.size() && isdigit(line[i])) {
+                    result += 'x';
+                    i++;
+                }
+            }
+        }
+        else {
+            result += line[i];
+            i++;
+        }
+    }
 
-    return newString;
-};
+    return result;
+}
 
 int main() {
-    string myLine;
-    bool loop;
+    string input;
+    char again;
+
     do {
-        cout << "Enter your line of words:\n";
-        getline(cin, myLine);
+        cout << "Enter your line of text:\n";
+        getline(cin, input);
 
-        cout << "Your result is\n" << change(myLine);
+        string masked = maskNumbers(input);
+        cout << "Masked result:\n" << masked << endl;
 
-        cout << "\n To continue do 1\t";
-        cin >> loop;
-        cin.ignore();
-    } while (loop);
+        cout << "\nWould you like to try again? (y/n): ";
+        cin >> again;
+        cin.ignore(); // Clear newline
+
+    } while (again == 'y' || again == 'Y');
+
+    cout << "Program ended." << endl;
     return 0;
 }

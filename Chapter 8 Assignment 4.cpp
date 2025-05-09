@@ -1,31 +1,38 @@
 #include <iostream>
 #include <string>
-
 using namespace std;
 
 int main() {
-    string fullName;
+    string first, middle, last;
 
-    cout << "Enter your full name and then press enter:\t";
-    getline(cin, fullName);
+    cout << "Enter your full name: ";
+    cin >> first;
 
-    string firstName(fullName.substr(0, fullName.find(" ")));
-    firstName += " ";
-    fullName.erase(0, fullName.find(" ") + 1);
+    // Try to get next two parts
+    string next;
+    cin >> next;
 
-    string secondInitial;
-    size_t secondSpaceIndex = fullName.find(" ");
-    if (secondSpaceIndex < fullName.size()) {
-        secondInitial = fullName[0];
-        secondInitial += ".";
-        fullName.erase(0, secondSpaceIndex + 1);
+    // Check if there's another part after "next"
+    if (cin.peek() == ' ') {
+        // There is a middle name/initial and a last name
+        middle = next;
+        cin >> last;
+    }
+    else {
+        // Only a last name
+        middle = "";
+        last = next;
+    }
 
-    };
+    // Build the output
+    cout << last << ", " << first;
 
-    string lastName(fullName);
-    lastName += ", ";
+    // Handle middle initial
+    if (!middle.empty()) {
+        cout << " " << middle[0] << ".";
+    }
 
-    cout << lastName << firstName << secondInitial;
+    cout << endl;
 
     return 0;
 }
