@@ -3,7 +3,7 @@
 #include <cctype>
 #include <iostream>
 using namespace std;
-
+// dont let enter return input, have end of input be a number inputed.
 void sortByInsertion(string& myString) {
     for (size_t i = 1; i < myString.size(); ++i) {
         char temp = myString[i];
@@ -34,23 +34,38 @@ string nextWord(string& myString) {
 
 int main() {
     string myLine;
+    cout << "Enter words (type a number to end input):\n";
+    string totalInput;
 
-    cout << "Enter a sentence:\n";
-    getline(cin, myLine);
-    if (myLine.empty()) {
+    while (true) {
+        getline(cin, myLine);
+
+        // Trim leading spaces
+        myLine.erase(0, myLine.find_first_not_of(" \t"));
+
+        // Check if input starts with a digit
+        if (!myLine.empty() && isdigit(myLine[0])) {
+            break;
+        }
+
+        if (!myLine.empty()) {
+            totalInput += myLine + " ";
+        }
+    }
+
+    if (totalInput.empty()) {
         cout << "No input provided.\n";
         return 0;
     }
 
-    myLine += " "; // To ensure final word is captured
-    while (!myLine.empty() && myLine.find_first_of(" ,.\n") == 0)
-        myLine.erase(0, 1);
+    while (!totalInput.empty() && totalInput.find_first_of(" ,.\n") == 0)
+        totalInput.erase(0, 1);
 
     string clearedLine;
     size_t wordsNumber = 0;
 
-    while (!myLine.empty()) {
-        string word = nextWord(myLine);
+    while (!totalInput.empty()) {
+        string word = nextWord(totalInput);
         if (!word.empty()) {
             clearedLine += word;
             ++wordsNumber;
